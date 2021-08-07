@@ -20,4 +20,7 @@ public:
 	Object(Position position);
 	Object(char shape);
 	Object(Position position, char shape);
+
+	Position getPosition() const;
+	char getShape() const;
 };
