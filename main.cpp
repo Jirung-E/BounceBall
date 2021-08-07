@@ -1,10 +1,11 @@
 #include "Object.h"
-
-#include <iostream>
+#include "ConsoleManager.h"
 
 
 int main() {
+	using namespace ConsoleManager;
 	using namespace std;
+	
 
 	Position p1 { -1.421f, 231 };
 	Position p2 { 4211.5f, 532.085f };
@@ -13,5 +14,6 @@ int main() {
 
 
 	Object o { {10, 10}, 'o' };
-	cout << o.getPosition().x << ", " << o.getPosition().y << ", " << o.getShape() << endl;
+	GotoXY(o.getPosition().x, o.getPosition().y);
+	cout << o.getShape();
 }
