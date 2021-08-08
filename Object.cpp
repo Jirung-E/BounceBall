@@ -66,23 +66,31 @@ char Object::getShape() const {
 
 
 void Object::Update() {
-	physics.setVelocity({ physics.getVelocity().x + physics.getAcceleration().x/(50/3), physics.getVelocity().y + physics.getAcceleration().y/(50/3) });
-	position += { physics.getVelocity().x + physics.getAcceleration().x/20, physics.getVelocity().y + physics.getAcceleration().y/20 };
+	physics.setVelocity({ physics.getVelocity().x * 0.998f + physics.getAcceleration().x/(50/3), physics.getVelocity().y + physics.getAcceleration().y/(50/3) });
+	position += { physics.getVelocity().x, physics.getVelocity().y };
 
 	if(position.y < 0) {
 		position.y = 0;
+		physics.setVelocity({ physics.getVelocity().x, -physics.getVelocity().y * physics.getBounciness() });
 	}
-	else if(position.y > 30) {///////////////////////////////// hard coding
-		position.y = 30;
-		physics.setVelocity({ physics.getVelocity().x, -physics.getVelocity().y });
+	else if(position.y > 28) {///////////////////////////////// hard coding
+		position.y = 28;
+		physics.setVelocity({ physics.getVelocity().x, -physics.getVelocity().y * physics.getBounciness() });
 	}
 	if(position.x < 0) {
 		position.x = 0;
-		physics.setVelocity({ -physics.getVelocity().x, physics.getVelocity().y });
+		physics.setVelocity({ -physics.getVelocity().x * physics.getBounciness(), physics.getVelocity().y });
 	}
-	else if(position.x > 100) {///////////////////////////////// hard coding
-		position.x = 100;
-		physics.setVelocity({ -physics.getVelocity().x, physics.getVelocity().y });
+	else if(position.x > 119) {///////////////////////////////// hard coding
+		position.x = 119;
+		physics.setVelocity({ -physics.getVelocity().x * physics.getBounciness(), physics.getVelocity().y });
 	}
+
+	if(-0.02f < physics.getVelocity().x && physics.getVelocity().x < 0.02f) {
+		physics.setVelocity({ 0.0f, physics.getVelocity().y });
+	}
+	//if(-0.001f < physics.getVelocity().y && physics.getVelocity().y < 0.001f) {
+	//	physics.setVelocity({ physics.getVelocity().x, 0.0f });
+	//}
 }
 // </Object> ------------------------------------------------------------------------------------------------------------------
