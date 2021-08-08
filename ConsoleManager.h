@@ -6,4 +6,6 @@
 
 namespace ConsoleManager {
 	void GotoXY(SHORT x, SHORT y);
+
+	void test();
 }
