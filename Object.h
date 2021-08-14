@@ -31,6 +31,7 @@ public:
 
 	Position getPosition() const;
 	char getShape() const;
+	PhysicsMaterial getPhysics() const;
 
 	void Update();
 };
