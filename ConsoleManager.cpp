@@ -49,8 +49,10 @@ void ConsoleManager::test() {
 void ConsoleManager::controlTest() {
 	using namespace std;
 
-	PhysicsMaterial p1 { 10.0f, { 0.0f, 0.0f }, { 0.0f, 0.0f }, 0.0f, { 0.0f, 0.98f } };
-	Object player { { 40, 20 }, 'o', p1 };
+	const Vector2D player_velocity{ 0, 10 };
+	PhysicsMaterial player_physics { 10.0f, { 0.0f, 0.0f }, { 0.0f, 0.0f }, 0.0f, { 0.0f, 0.98f } };
+	PhysicsMaterial p{ player_physics };
+	Object player { { 40, 20 }, 'o', player_physics };
 
 	while(true) {
 		if(_kbhit()) {

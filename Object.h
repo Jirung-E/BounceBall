@@ -29,9 +29,13 @@ public:
 	Object(Position position, char shape);
 	Object(Position position, char shape, PhysicsMaterial physics_material);
 
+	//getter
 	Position getPosition() const;
 	char getShape() const;
 	PhysicsMaterial getPhysics() const;
+
+	//setter
+	void setPhysics(const PhysicsMaterial& physics_material);
 
 	void Update();
 };

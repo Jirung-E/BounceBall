@@ -11,6 +11,17 @@ PhysicsMaterial::PhysicsMaterial(float mass, Vector2D acceleration, Vector2D vel
 
 }
 
+auto PhysicsMaterial::operator=(const PhysicsMaterial& physics_material) {
+	mass = physics_material.mass;
+	acceleration = physics_material.acceleration;
+	velocity = physics_material.velocity;
+	bounciness = physics_material.bounciness;
+
+	return *this;
+}
+
+//PhysicsMaterial::PhysicsMaterial(const PhysicsMaterial& physics_material) = default;
+
 
 void PhysicsMaterial::setMass(double mass) {
 	if(mass < 0) {

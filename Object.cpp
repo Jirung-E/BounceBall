@@ -64,6 +64,14 @@ char Object::getShape() const {
 	return shape;
 }
 
+PhysicsMaterial Object::getPhysics() const {
+	return physics;
+}
+
+
+void Object::setPhysics(const PhysicsMaterial& physics_material) {
+	physics = physics_material;
+}
 
 void Object::Update() {
 	physics.setVelocity({ physics.getVelocity().x * 0.998f + physics.getAcceleration().x/(50/3), physics.getVelocity().y + physics.getAcceleration().y/(50/3) });
