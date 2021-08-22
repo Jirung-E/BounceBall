@@ -19,7 +19,7 @@ public:
 	PhysicsMaterial();
 	PhysicsMaterial(float mass, Vector2D acceleration, Vector2D velocity, float bounciness, Vector2D gravity);
 	//PhysicsMaterial(const PhysicsMaterial& physics_material) = default;
-	auto operator=(const PhysicsMaterial& physics_material);
+	PhysicsMaterial operator=(const PhysicsMaterial& physics_material);
 
 
 	void setMass(double mass);

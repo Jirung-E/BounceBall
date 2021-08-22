@@ -11,7 +11,7 @@ PhysicsMaterial::PhysicsMaterial(float mass, Vector2D acceleration, Vector2D vel
 
 }
 
-auto PhysicsMaterial::operator=(const PhysicsMaterial& physics_material) {
+PhysicsMaterial PhysicsMaterial::operator=(const PhysicsMaterial& physics_material) {
 	mass = physics_material.mass;
 	acceleration = physics_material.acceleration;
 	velocity = physics_material.velocity;
