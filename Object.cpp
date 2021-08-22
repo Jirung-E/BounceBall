@@ -34,41 +34,58 @@ Position Position::operator-=(Position position) {
 
 
 // <Object> -------------------------------------------------------------------------------------------------------------------
-Object::Object() : position { 0, 0 }, shape { ' ' } {
+Object::Object() : position { 0, 0 }, sprite { ' ' } {
 
 }
 
-Object::Object(Position position) : position { position }, shape { ' ' } {
+Object::Object(Position position) : position { position }, sprite { ' ' } {
 
 }
 
-Object::Object(char shape) : position { 0, 0 }, shape { shape } {
+Object::Object(Sprite sprite) : position { 0, 0 }, sprite { sprite } {
 
 }
 
-Object::Object(Position position, char shape) : position { position }, shape { shape } {
+Object::Object(Position position, Sprite sprite) : position { position }, sprite { sprite } {
 
 }
 
-Object::Object(Position position, char shape, PhysicsMaterial physics_material) :
-	position { position }, shape { shape }, physics { physics_material } {
+Object::Object(Position position, Sprite sprite, PhysicsMaterial physics_material) :
+	position { position }, sprite { sprite }, physics { physics_material } {
 	
 }
 
 
+// getter
 Position Object::getPosition() const {
 	return position;
 }
 
-char Object::getShape() const {
-	return shape;
+Sprite Object::getSprite() const {
+	return sprite;
 }
 
 PhysicsMaterial Object::getPhysics() const {
 	return physics;
 }
 
+template<>
+Position& Object::GetComponent<Position>() {
+	return position;
+}
 
+template<>
+Sprite& Object::GetComponent<Sprite>() {
+	return sprite;
+}
+
+template<>
+PhysicsMaterial& Object::GetComponent<PhysicsMaterial>() {
+	return physics;
+}
+
+
+//setter
 void Object::setPhysics(const PhysicsMaterial& physics_material) {
 	physics = physics_material;
 }

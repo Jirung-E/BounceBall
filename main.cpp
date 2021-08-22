@@ -2,5 +2,6 @@
 
 
 int main() {
-	ConsoleManager::test();
+	//ConsoleManager::test();
+	ConsoleManager::controlTest();
 }

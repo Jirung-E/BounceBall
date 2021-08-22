@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PhysicsMaterial.h"
+#include "Sprite.h"
 
 
 class Position {
@@ -19,20 +20,23 @@ public:
 
 class Object {
 	Position position;
-	char shape;
+	Sprite sprite;
 	PhysicsMaterial physics;
 
 public:
 	Object();
 	Object(Position position);
-	Object(char shape);
-	Object(Position position, char shape);
-	Object(Position position, char shape, PhysicsMaterial physics_material);
+	Object(Sprite sprite);
+	Object(Position position, Sprite sprite);
+	Object(Position position, Sprite sprite, PhysicsMaterial physics_material);
 
 	//getter
 	Position getPosition() const;
-	char getShape() const;
+	Sprite getSprite() const;
 	PhysicsMaterial getPhysics() const;
+
+	template<class T>
+	T& GetComponent();
 
 	//setter
 	void setPhysics(const PhysicsMaterial& physics_material);
