@@ -2,9 +2,10 @@
 
 #include <thread>
 #include <chrono>
-#include <conio.h>
+//#include <conio.h>
 
 #include "Object.h"
+#include "Ball.h"
 
 
 void ConsoleManager::GotoXY(SHORT x, SHORT y) {
@@ -52,7 +53,7 @@ void ConsoleManager::controlTest() {
 	const Vector2D player_velocity { 0, 10 };
 	PhysicsMaterial player_physics { 10.0f, { 0.0f, 0.0f }, { 0.0f, 0.0f }, 1.0f, { 0.0f, 0.98f } };
 	//PhysicsMaterial p { player_physics };
-	Object player { { 40, 20 }, 'o', player_physics };
+	Ball player { { 40, 20 }, 'o', player_physics };
 
 	// <Update>			....    while(Update());
 	while(true) {					// -> return bool...

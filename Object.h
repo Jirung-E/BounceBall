@@ -19,6 +19,7 @@ public:
 };
 
 class Object {
+protected:
 	Position position;
 	Sprite sprite;
 	PhysicsMaterial physics;
