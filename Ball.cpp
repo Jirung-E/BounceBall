@@ -45,6 +45,7 @@ void Ball::Update() {
 	if (-0.02f < physics.getVelocity().x && physics.getVelocity().x < 0.02f) {
 		physics.setVelocity({ 0.0f, physics.getVelocity().y });
 	}
+
 	//if(-0.001f < physics.getVelocity().y && physics.getVelocity().y < 0.001f) {
 	//	physics.setVelocity({ physics.getVelocity().x, 0.0f });
 	//}
