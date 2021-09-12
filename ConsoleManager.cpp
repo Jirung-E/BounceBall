@@ -53,37 +53,74 @@ void ConsoleManager::controlTest() {
 	const Vector2D player_velocity { 0, 10 };
 	PhysicsMaterial player_physics { 10.0f, { 0.0f, 0.0f }, { 0.0f, 0.0f }, 1.0f, { 0.0f, 0.98f } };
 	//PhysicsMaterial p { player_physics };
-	Ball player { { 40, 20 }, 'o', player_physics };
+	Ball player1 { { 40, 20 }, 'o', player_physics };
+	Ball player2 { { 10, 20 }, 'x', player_physics };
 
 	// <Update>			....    while(Update());
 	while(true) {					// -> return bool...
+		//p1
 		if(GetAsyncKeyState(VK_LEFT) & 0x8000) {
-			if(player.GetComponent<PhysicsMaterial>().getVelocity().x > -1.0f) {		// hard coding...
-				player.GetComponent<PhysicsMaterial>().setVelocity({ player.getPhysics().getVelocity().x - 0.1f, player.getPhysics().getVelocity().y });
+			if(player1.GetComponent<PhysicsMaterial>().getVelocity().x > -1.0f) {		// hard coding...
+				player1.GetComponent<PhysicsMaterial>().setVelocity({ player1.getPhysics().getVelocity().x - 0.1f, player1.getPhysics().getVelocity().y });
 			}
 		}
 		else if(GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-			if(player.GetComponent<PhysicsMaterial>().getVelocity().x < 1.0f) {		// hard coding...
-				player.GetComponent<PhysicsMaterial>().setVelocity({ player.getPhysics().getVelocity().x + 0.1f, player.getPhysics().getVelocity().y });
+			if(player1.GetComponent<PhysicsMaterial>().getVelocity().x < 1.0f) {		// hard coding...
+				player1.GetComponent<PhysicsMaterial>().setVelocity({ player1.getPhysics().getVelocity().x + 0.1f, player1.getPhysics().getVelocity().y });
 			}
 		}
 		else {
-			if(player.GetComponent<PhysicsMaterial>().getVelocity().x > -1.0f) {		// hard coding...
-				player.GetComponent<PhysicsMaterial>().setVelocity({ player.getPhysics().getVelocity().x - 0.1f, player.getPhysics().getVelocity().y });
+			if(player1.GetComponent<PhysicsMaterial>().getVelocity().x > -1.0f) {		// hard coding...
+				player1.GetComponent<PhysicsMaterial>().setVelocity({ player1.getPhysics().getVelocity().x - 0.1f, player1.getPhysics().getVelocity().y });
 			}
-			else if(player.GetComponent<PhysicsMaterial>().getVelocity().x < 1.0f) {		// hard coding...
-				player.GetComponent<PhysicsMaterial>().setVelocity({ player.getPhysics().getVelocity().x + 0.1f, player.getPhysics().getVelocity().y });
+			else if(player1.GetComponent<PhysicsMaterial>().getVelocity().x < 1.0f) {		// hard coding...
+				player1.GetComponent<PhysicsMaterial>().setVelocity({ player1.getPhysics().getVelocity().x + 0.1f, player1.getPhysics().getVelocity().y });
 			}
-			player.GetComponent<PhysicsMaterial>().setVelocity({ 0, player.getPhysics().getVelocity().y });
+			player1.GetComponent<PhysicsMaterial>().setVelocity({ 0, player1.getPhysics().getVelocity().y });
 		}
 
-		player.Update();
+		//p2
+		if (GetAsyncKeyState(0x41) & 0x8000) {
+			if (player2.GetComponent<PhysicsMaterial>().getVelocity().x > -1.0f) {		// hard coding...
+				player2.GetComponent<PhysicsMaterial>().setVelocity({ player2.getPhysics().getVelocity().x - 0.1f, player2.getPhysics().getVelocity().y });
+			}
+		}
+		else if (GetAsyncKeyState(0x44) & 0x8000) {
+			if (player2.GetComponent<PhysicsMaterial>().getVelocity().x < 1.0f) {		// hard coding...
+				player2.GetComponent<PhysicsMaterial>().setVelocity({ player2.getPhysics().getVelocity().x + 0.1f, player2.getPhysics().getVelocity().y });
+			}
+		}
+		else {
+			if (player2.GetComponent<PhysicsMaterial>().getVelocity().x > -1.0f) {		// hard coding...
+				player2.GetComponent<PhysicsMaterial>().setVelocity({ player2.getPhysics().getVelocity().x - 0.1f, player2.getPhysics().getVelocity().y });
+			}
+			else if (player2.GetComponent<PhysicsMaterial>().getVelocity().x < 1.0f) {		// hard coding...
+				player2.GetComponent<PhysicsMaterial>().setVelocity({ player2.getPhysics().getVelocity().x + 0.1f, player2.getPhysics().getVelocity().y });
+			}
+			player2.GetComponent<PhysicsMaterial>().setVelocity({ 0, player2.getPhysics().getVelocity().y });
+		}
 
+		// update
+		player1.Update();
+		player2.Update();
 
-		GotoXY(static_cast<SHORT>(player.GetComponent<Position>().x), static_cast<SHORT>(player.GetComponent<Position>().y));
-		cout << player.GetComponent<Sprite>().getSprite();
+		// draw .
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+			cout << '.';
+		}
+
+		// draw player sprite
+		GotoXY(static_cast<SHORT>(player1.GetComponent<Position>().x), static_cast<SHORT>(player1.GetComponent<Position>().y));
+		cout << player1.GetComponent<Sprite>().getSprite();
+		GotoXY(static_cast<SHORT>(player2.GetComponent<Position>().x), static_cast<SHORT>(player2.GetComponent<Position>().y));
+		cout << player2.GetComponent<Sprite>().getSprite();
+
 		this_thread::sleep_for(1000ms/60);
-		GotoXY(static_cast<SHORT>(player.GetComponent<Position>().x), static_cast<SHORT>(player.GetComponent<Position>().y));
+
+		// erase player sprite
+		GotoXY(static_cast<SHORT>(player1.GetComponent<Position>().x), static_cast<SHORT>(player1.GetComponent<Position>().y));
+		cout << ' ';
+		GotoXY(static_cast<SHORT>(player2.GetComponent<Position>().x), static_cast<SHORT>(player2.GetComponent<Position>().y));
 		cout << ' ';
 	}
 	// </Update>
