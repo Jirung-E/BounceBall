@@ -2,21 +2,8 @@
 
 #include "PhysicsMaterial.h"
 #include "Sprite.h"
+#include "Position.h"
 
-
-class Position {
-public:
-	float x;
-	float y;
-
-	Position();
-	Position(float x, float y);
-
-	Position operator+(Position position) const;
-	Position operator-(Position position) const;
-	Position operator+=(Position position);
-	Position operator-=(Position position);
-};
 
 class Object {
 protected:
