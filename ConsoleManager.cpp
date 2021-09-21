@@ -132,22 +132,32 @@ void ConsoleManager::constructorTest() {
 	PhysicsMaterial player_physics{ 10.0f, { 0.0f, 0.0f }, { 0.0f, 0.0f }, 1.0f, { 0.0f, 0.98f } };
 	Ball ball { { 40, 20 }, 'o', player_physics };
 
-	Block block{ { 50, 30 } };
+	Block block{ { 50, 21 } };
+	block.Update();
 
+	// draw block sprite
 	GotoXY(static_cast<SHORT>(block.GetComponent<Position>().x), static_cast<SHORT>(block.GetComponent<Position>().y));
 	cout << block.GetComponent<Sprite>().getSprite();
 
 	while (1) {
 		ball.Update();
 
-		// draw player sprite
+		// draw box collider
+		ball.GetComponent<BoxCollider2D>().show();
+		block.GetComponent<BoxCollider2D>().show();
+
+		// draw ball sprite
 		GotoXY(static_cast<SHORT>(ball.GetComponent<Position>().x), static_cast<SHORT>(ball.GetComponent<Position>().y));
 		cout << ball.GetComponent<Sprite>().getSprite();
 
 		this_thread::sleep_for(1000ms / 60);
 
-		// erase player sprite
+		// erase ball sprite
 		GotoXY(static_cast<SHORT>(ball.GetComponent<Position>().x), static_cast<SHORT>(ball.GetComponent<Position>().y));
 		cout << ' ';
+
+		// erase box collider
+		ball.GetComponent<BoxCollider2D>().hide();
+		block.GetComponent<BoxCollider2D>().hide();
 	}
 }

@@ -3,24 +3,29 @@
 
 // <Object> -------------------------------------------------------------------------------------------------------------------
 Object::Object() : position { 0, 0 }, sprite { ' ' } {
-
+	box_collider.setHeight(3);
+	box_collider.setWidth(3);
 }
 
 Object::Object(Position position) : position { position }, sprite { ' ' } {
-
+	box_collider.setHeight(3);
+	box_collider.setWidth(3);
 }
 
 Object::Object(Sprite sprite) : position { 0, 0 }, sprite { sprite } {
-
+	box_collider.setHeight(3);
+	box_collider.setWidth(3);
 }
 
 Object::Object(Position position, Sprite sprite) : position { position }, sprite { sprite } {
-
+	box_collider.setHeight(3);
+	box_collider.setWidth(3);
 }
 
 Object::Object(Position position, Sprite sprite, PhysicsMaterial physics_material) :
 	position { position }, sprite { sprite }, physics { physics_material } {
-	
+	box_collider.setHeight(3);
+	box_collider.setWidth(3);
 }
 
 
@@ -52,6 +57,11 @@ PhysicsMaterial& Object::GetComponent<PhysicsMaterial>() {
 	return physics;
 }
 
+template<>
+BoxCollider2D& Object::GetComponent<BoxCollider2D>() {
+	return box_collider;
+}
+
 
 //setter
 void Object::setPhysics(const PhysicsMaterial& physics_material) {
@@ -61,6 +71,8 @@ void Object::setPhysics(const PhysicsMaterial& physics_material) {
 void Object::Update() {
 	physics.setVelocity({ physics.getVelocity().x * 0.998f + physics.getAcceleration().x/(50/3), physics.getVelocity().y + physics.getAcceleration().y/(50/3) });
 	position += { physics.getVelocity().x, physics.getVelocity().y };
+
+	box_collider.setPosition(position);
 
 	if(position.y < 0) {
 		position.y = 0;

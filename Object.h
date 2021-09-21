@@ -3,6 +3,7 @@
 #include "PhysicsMaterial.h"
 #include "Sprite.h"
 #include "Position.h"
+#include "BoxCollider2D.h"
 
 
 class Object {
@@ -10,6 +11,7 @@ protected:
 	Position position;
 	Sprite sprite;
 	PhysicsMaterial physics;
+	BoxCollider2D box_collider;
 
 public:
 	Object();

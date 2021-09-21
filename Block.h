@@ -11,5 +11,5 @@ public:
 	Block(Position position, Sprite sprite);
 	Block(Position position, Sprite sprite, PhysicsMaterial physics_material);
 
-	void Update();
+	//void Update();
 };

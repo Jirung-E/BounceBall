@@ -11,5 +11,5 @@ public:
 	Ball(Position position, Sprite sprite);
 	Ball(Position position, Sprite sprite, PhysicsMaterial physics_material);
 
-	void Update();
+	//void Update();
 };

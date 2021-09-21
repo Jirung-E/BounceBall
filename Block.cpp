@@ -21,6 +21,6 @@ Block::Block(Position position, Sprite sprite, PhysicsMaterial physics_material)
 
 }
 
-void Block::Update() {
-	
-}
+//void Block::Update() {
+//	
+//}
