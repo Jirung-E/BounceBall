@@ -11,4 +11,6 @@ namespace ConsoleManager {
 
 	//void update();
 	void controlTest();
+
+	void constructorTest();
 }

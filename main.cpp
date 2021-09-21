@@ -3,5 +3,6 @@
 
 int main() {
 	//ConsoleManager::test();
-	ConsoleManager::controlTest();
+	//ConsoleManager::controlTest();
+	ConsoleManager::constructorTest();
 }

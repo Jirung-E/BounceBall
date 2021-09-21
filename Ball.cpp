@@ -2,11 +2,11 @@
 
 
 Ball::Ball() : Object() {
-
+	GetComponent<Sprite>() = Sprite { 'o' };
 }
 
 Ball::Ball(Position position) : Object { position } {
-
+	GetComponent<Sprite>() = Sprite{ 'o' };
 }
 
 Ball::Ball(Sprite sprite) : Object { sprite } {

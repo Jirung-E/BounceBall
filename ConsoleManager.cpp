@@ -2,10 +2,10 @@
 
 #include <thread>
 #include <chrono>
-//#include <conio.h>
 
 #include "Object.h"
 #include "Ball.h"
+#include "Block.h"
 
 
 void ConsoleManager::GotoXY(SHORT x, SHORT y) {
@@ -124,4 +124,30 @@ void ConsoleManager::controlTest() {
 		cout << ' ';
 	}
 	// </Update>
+}
+
+void ConsoleManager::constructorTest() {
+	using namespace std;
+
+	PhysicsMaterial player_physics{ 10.0f, { 0.0f, 0.0f }, { 0.0f, 0.0f }, 1.0f, { 0.0f, 0.98f } };
+	Ball ball { { 40, 20 }, 'o', player_physics };
+
+	Block block{ { 50, 30 } };
+
+	GotoXY(static_cast<SHORT>(block.GetComponent<Position>().x), static_cast<SHORT>(block.GetComponent<Position>().y));
+	cout << block.GetComponent<Sprite>().getSprite();
+
+	while (1) {
+		ball.Update();
+
+		// draw player sprite
+		GotoXY(static_cast<SHORT>(ball.GetComponent<Position>().x), static_cast<SHORT>(ball.GetComponent<Position>().y));
+		cout << ball.GetComponent<Sprite>().getSprite();
+
+		this_thread::sleep_for(1000ms / 60);
+
+		// erase player sprite
+		GotoXY(static_cast<SHORT>(ball.GetComponent<Position>().x), static_cast<SHORT>(ball.GetComponent<Position>().y));
+		cout << ' ';
+	}
 }
